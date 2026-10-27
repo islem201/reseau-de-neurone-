@@ -1,0 +1,11 @@
+# Local environments, generated datasets and notebook/runtime caches.
+.venv/
+venv/
+data/
+runs/
+.ipynb_checkpoints/
+__pycache__/
+*.py[cod]
+
+# The small, requested comparison figures, metrics and model checkpoints in
+# results/anchor_comparison/ are intentionally kept as project deliverables.

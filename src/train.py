@@ -20,7 +20,7 @@ def train(model: Detector, loader: DataLoader, optimizer: torch.optim.Optimizer)
         loss = compute_loss(outputs, targets)  # Calcule la perte entre les prédictions et les cibles
         loss.backward()  # Calcule les gradients
         optimizer.step()  # Met à jour les poids du modèle
-        total_loss += loss.item()  # Accumule la perte pour calculer la moyenne plus tard
+        total_loss += loss.item() * len(images)  # Pondère la loss moyenne de chaque batch
     # A COMPLETER Aide : Bouclez sur les images et cibles du loader, calculez la loss, 
     # faites un backward et un step de l'optimizer.
     return total_loss / len(loader.dataset)

@@ -51,7 +51,11 @@ def decode(logits: torch.Tensor, size: int = 64) -> tuple[torch.Tensor, torch.Te
     """(5, G, G) -> boîtes (G*G, 4) en pixels [x1, y1, x2, y2] et scores (G*G,)."""
     grid = logits.shape[-1]
     p = torch.sigmoid(logits)
-    rows, cols = torch.meshgrid(torch.arange(grid), torch.arange(grid), indexing="ij")
+    rows, cols = torch.meshgrid(
+        torch.arange(grid, device=logits.device),
+        torch.arange(grid, device=logits.device),
+        indexing="ij",
+    )
     cx = (cols + p[1]) * STRIDE
     cy = (rows + p[2]) * STRIDE
     w, h = p[3] * size, p[4] * size
@@ -114,7 +118,7 @@ class Detector(nn.Module):
 def compute_loss(logits: torch.Tensor, target: torch.Tensor) -> torch.Tensor:
     """BCE sur l'objectness de toutes les cellules + MSE sur le décalage/taille de la cellule positive."""
     obj_loss = nn.functional.binary_cross_entropy_with_logits(
-        logits[:, 0], target[:, 0], pos_weight=torch.tensor(10.0))
+        logits[:, 0], target[:, 0], pos_weight=logits.new_tensor(10.0))
     positive = target[:, 0] > 0.5  # (B, G, G)
     pred_box = torch.sigmoid(logits[:, 1:]).permute(0, 2, 3, 1)[positive]
     true_box = target[:, 1:].permute(0, 2, 3, 1)[positive]
