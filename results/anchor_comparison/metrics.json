@@ -1,0 +1,252 @@
+{
+  "config": {
+    "output": "results/anchor_comparison",
+    "data_dir": null,
+    "train": 1200,
+    "val": 200,
+    "test": 200,
+    "size": 64,
+    "shape": "circle",
+    "min_objects": 2,
+    "max_objects": 4,
+    "epochs": 20,
+    "batch_size": 64,
+    "learning_rate": 0.003,
+    "seed": 42,
+    "device": "cpu",
+    "threads": 1,
+    "candidate_threshold": 0.01,
+    "nms_iou": 0.6,
+    "pre_nms_topk": 100,
+    "max_detections": 20,
+    "examples": 6
+  },
+  "data_source": "dataset_generator_3.make_example (separate seeded streams, in memory)",
+  "split_seeds": {
+    "train": 42,
+    "validation": 43,
+    "test": 44
+  },
+  "exact_input_images_disjoint": true,
+  "dataset_stats": {
+    "train": {
+      "images": 1200,
+      "objects": 3617,
+      "images_with_shared_cell": 918,
+      "one_anchor_dropped": 1293,
+      "four_anchor_dropped": 0
+    },
+    "validation": {
+      "images": 200,
+      "objects": 596,
+      "images_with_shared_cell": 149,
+      "one_anchor_dropped": 206,
+      "four_anchor_dropped": 0
+    },
+    "test": {
+      "images": 200,
+      "objects": 601,
+      "images_with_shared_cell": 148,
+      "one_anchor_dropped": 217,
+      "four_anchor_dropped": 0
+    }
+  },
+  "anchors_pixels": {
+    "one_anchor": [
+      [
+        16.0,
+        16.0
+      ]
+    ],
+    "four_anchors": [
+      [
+        10.0,
+        10.0
+      ],
+      [
+        14.0,
+        14.0
+      ],
+      [
+        18.0,
+        18.0
+      ],
+      [
+        22.0,
+        22.0
+      ]
+    ]
+  },
+  "torch_version": "2.2.2+cu121",
+  "numpy_version": "1.26.4",
+  "models": {
+    "original": {
+      "parameters": 6309,
+      "train_losses": [
+        0.9199016896883646,
+        0.5045526758829753,
+        0.32787976900736493,
+        0.22349886695543925,
+        0.1719487371047338,
+        0.14142121533552807,
+        0.12251544296741486,
+        0.10955898185571035,
+        0.09897473871707917,
+        0.09126124908526738,
+        0.08315518260002136,
+        0.08155657351016998,
+        0.07415612707535425,
+        0.07047179202238718,
+        0.06699255834023157,
+        0.06356119558215141,
+        0.060826088339090346,
+        0.056403058966000875,
+        0.052294040272633235,
+        0.04938952604929606
+      ],
+      "threshold": 0.25,
+      "validation_metrics": {
+        "ground_truths": 596,
+        "predictions": 199,
+        "tp": 195,
+        "fp": 4,
+        "fn": 401,
+        "precision": 0.9798994974874372,
+        "recall": 0.3271812080536913,
+        "f1": 0.49056603773584906,
+        "mean_iou_of_true_positives": 0.7992553065984677,
+        "ap50": 0.32586117826534544,
+        "confidence_threshold": 0.25,
+        "matching_iou": 0.5,
+        "candidate_predictions": 200
+      },
+      "test_metrics": {
+        "ground_truths": 601,
+        "predictions": 195,
+        "tp": 191,
+        "fp": 4,
+        "fn": 410,
+        "precision": 0.9794871794871794,
+        "recall": 0.3178036605657238,
+        "f1": 0.47989949748743715,
+        "mean_iou_of_true_positives": 0.8011458946772271,
+        "ap50": 0.3240573520116015,
+        "confidence_threshold": 0.25,
+        "matching_iou": 0.5,
+        "candidate_predictions": 200
+      }
+    },
+    "one_anchor": {
+      "parameters": 6309,
+      "train_losses": [
+        1.2433596817652384,
+        0.6620818781852722,
+        0.5811165809631348,
+        0.5215712495644887,
+        0.4865683591365814,
+        0.4607905952135722,
+        0.4415438373883565,
+        0.4251986837387085,
+        0.4158952331542969,
+        0.41025418996810914,
+        0.3932143763701121,
+        0.37786219199498494,
+        0.36555941740671793,
+        0.35850075165430706,
+        0.35206921259562174,
+        0.3384061539173126,
+        0.3313912494977315,
+        0.3221647322177887,
+        0.32385307947794595,
+        0.31460116465886434
+      ],
+      "threshold": 0.7,
+      "validation_metrics": {
+        "ground_truths": 596,
+        "predictions": 453,
+        "tp": 354,
+        "fp": 99,
+        "fn": 242,
+        "precision": 0.7814569536423841,
+        "recall": 0.5939597315436241,
+        "f1": 0.6749285033365109,
+        "mean_iou_of_true_positives": 0.72521902982798,
+        "ap50": 0.6337216802232919,
+        "confidence_threshold": 0.7,
+        "matching_iou": 0.5,
+        "candidate_predictions": 1014
+      },
+      "test_metrics": {
+        "ground_truths": 601,
+        "predictions": 451,
+        "tp": 348,
+        "fp": 103,
+        "fn": 253,
+        "precision": 0.7716186252771619,
+        "recall": 0.5790349417637272,
+        "f1": 0.6615969581749049,
+        "mean_iou_of_true_positives": 0.7156350850716404,
+        "ap50": 0.644352548365764,
+        "confidence_threshold": 0.7,
+        "matching_iou": 0.5,
+        "candidate_predictions": 1025
+      }
+    },
+    "four_anchors": {
+      "parameters": 6804,
+      "train_losses": [
+        1.1507400075594585,
+        0.7529136649767558,
+        0.5906609416007995,
+        0.517573839823405,
+        0.48242350896199543,
+        0.461129355430603,
+        0.4476387898127238,
+        0.432575497229894,
+        0.41974141160647077,
+        0.41620380798975626,
+        0.40570847868919374,
+        0.39912830471992494,
+        0.3930762016773224,
+        0.3890997656186422,
+        0.3857018820444743,
+        0.3801564689477285,
+        0.3727150233586629,
+        0.36712318738301597,
+        0.36412389993667604,
+        0.361349124511083
+      ],
+      "threshold": 0.65,
+      "validation_metrics": {
+        "ground_truths": 596,
+        "predictions": 651,
+        "tp": 431,
+        "fp": 220,
+        "fn": 165,
+        "precision": 0.6620583717357911,
+        "recall": 0.7231543624161074,
+        "f1": 0.6912590216519647,
+        "mean_iou_of_true_positives": 0.7117976347144408,
+        "ap50": 0.7503662185730615,
+        "confidence_threshold": 0.65,
+        "matching_iou": 0.5,
+        "candidate_predictions": 2026
+      },
+      "test_metrics": {
+        "ground_truths": 601,
+        "predictions": 634,
+        "tp": 411,
+        "fp": 223,
+        "fn": 190,
+        "precision": 0.6482649842271293,
+        "recall": 0.6838602329450915,
+        "f1": 0.665587044534413,
+        "mean_iou_of_true_positives": 0.7096276203501254,
+        "ap50": 0.7295578588766691,
+        "confidence_threshold": 0.65,
+        "matching_iou": 0.5,
+        "candidate_predictions": 2023
+      }
+    }
+  }
+}
